@@ -1,0 +1,86 @@
+<div class="container">
+  <h2>Statistics</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- User Statistics -->
+  <div *ngIf="!isAdmin">
+    <h3>Most Frequently Purchased Items</h3>
+    <table class="table table-striped" *ngIf="frequentPurchases.length > 0">
+      <thead>
+      <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of frequentPurchases">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>${{ product.retailPrice.toFixed(2) }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h3>Most Recently Purchased Items</h3>
+    <table class="table table-striped" *ngIf="recentPurchases.length > 0">
+      <thead>
+      <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of recentPurchases">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>${{ product.retailPrice.toFixed(2) }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Admin Statistics -->
+  <div *ngIf="isAdmin">
+    <h3>Most Profitable Products</h3>
+    <table class="table table-striped" *ngIf="mostProfitable.length > 0">
+      <thead>
+      <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Profit</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of mostProfitable">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>${{ product.wholesalePrice.toFixed(2) }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h3>Most Popular Products</h3>
+    <table class="table table-striped" *ngIf="mostPopular.length > 0">
+      <thead>
+      <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of mostPopular">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>${{ product.retailPrice.toFixed(2) }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

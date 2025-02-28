@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container d-flex justify-content-between align-items-center">
+    <span class="navbar-brand">Super Duper Mart</span>
+
+    <div class="navbar-items d-flex">
+      <a *ngIf="isAuthenticated" class="nav-link" routerLink="/home">Home</a>
+      <a *ngIf="isAuthenticated && !isAdmin" class="nav-link" routerLink="/watchlist">Watchlist</a>
+      <a *ngIf="isAuthenticated" class="nav-link" routerLink="/orders">Orders</a>
+      <a *ngIf="isAuthenticated" class="nav-link" routerLink="/stats">Stats</a>
+      <a class="nav-link" routerLink="/register">Register</a>
+
+      <!-- Show "Login" if user is NOT logged in -->
+      <a *ngIf="!isAuthenticated" class="nav-link" routerLink="/login">Login</a>
+
+      <!-- Show "Logout" if user IS logged in -->
+      <a *ngIf="isAuthenticated" class="nav-link logout-link" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</nav>

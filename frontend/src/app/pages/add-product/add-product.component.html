@@ -1,0 +1,37 @@
+<div class="form-container">
+  <h2>Add New Product</h2>
+  <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+    <div class="form-group">
+      <label for="name">Product Name:</label>
+      <input id="name" type="text" formControlName="name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="wholesalePrice">Wholesale Price:</label>
+      <input id="wholesalePrice" type="number" formControlName="wholesalePrice" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="retailPrice">Retail Price:</label>
+      <input id="retailPrice" type="number" formControlName="retailPrice" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Stock Quantity:</label>
+      <input id="quantity" type="number" formControlName="quantity" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Add Product</button>
+  </form>
+
+  <!-- Display success or error messages -->
+  <div *ngIf="message" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+    {{ message }}
+  </div>
+</div>
+

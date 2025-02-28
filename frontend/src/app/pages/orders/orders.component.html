@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Orders</h2>
+  <div *ngIf="orders.length === 0" class="alert alert-info">
+    No orders found.
+  </div>
+
+  <table class="table table-striped" *ngIf="orders.length > 0">
+    <thead>
+    <tr>
+      <th>Date Placed</th>
+      <th>Status</th>
+      <th *ngIf="isAdmin">Username</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.datePlaced }}</td>
+      <td>{{ order.orderStatus }}</td>
+      <td *ngIf="isAdmin">{{ order.username }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="viewOrderDetails(order.id)">View Details</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

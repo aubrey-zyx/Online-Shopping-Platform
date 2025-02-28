@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>My Watchlist</h2>
+
+  <div *ngIf="watchlist.length === 0" class="alert alert-info">
+    Your watchlist is empty.
+  </div>
+
+  <table class="table table-striped" *ngIf="watchlist.length > 0">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of watchlist">
+      <td>
+        <a [routerLink]="['/product', product.productId]">{{ product.productName }}</a>
+      </td>
+      <td>${{ product.retailPrice.toFixed(2) }}</td>
+      <td>
+        <button class="btn btn-warning" (click)="removeFromWatchlist(product.productId)">
+          Remove
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

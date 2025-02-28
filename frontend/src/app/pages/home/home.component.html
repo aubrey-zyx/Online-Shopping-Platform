@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>Products</h2>
+
+  <div *ngIf="products.length === 0" class="alert alert-info">
+    No products available.
+  </div>
+
+  <table class="table table-striped" *ngIf="products.length > 0">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th *ngIf="!isAdmin">Quantity</th>
+      <th *ngIf="!isAdmin">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products">
+      <td>
+        <a [routerLink]="['/product', product.id]">{{ product.name }}</a>
+      </td>
+
+      <!-- Only show quantity input for non-admin users -->
+      <td *ngIf="!isAdmin">
+        <input type="number" [(ngModel)]="product.quantity" min="0" placeholder="Quantity">
+      </td>
+
+      <!-- Only show "Add to Watchlist" button for non-admin users -->
+      <td *ngIf="!isAdmin">
+        <button class="btn btn-secondary" (click)="addToWatchlist(product.id)">Add to Watchlist</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Place Order button (for non-admin users) -->
+  <div *ngIf="!isAdmin" class="order-button">
+    <button class="btn btn-primary" (click)="placeOrder()">Place Order</button>
+  </div>
+
+  <!-- Add Product button (for admin) -->
+  <div *ngIf="isAdmin" class="add-product-button">
+    <button class="btn btn-success" (click)="navigateToAddProduct()">Add Product</button>
+  </div>
+</div>

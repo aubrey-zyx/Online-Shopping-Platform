@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="product-card">
+    <h2 *ngIf="!isAdmin">{{ product?.name }}</h2>
+
+    <!-- Admin Editable Form -->
+    <form *ngIf="isAdmin" [formGroup]="productForm" (ngSubmit)="updateProduct()" class="product-form">
+      <h2>Edit Product</h2>
+
+      <div class="form-group">
+        <label for="name">Product Name:</label>
+        <input id="name" type="text" formControlName="name" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description" class="form-control"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="retailPrice">Retail Price:</label>
+          <input id="retailPrice" type="number" formControlName="retailPrice" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="wholesalePrice">Wholesale Price:</label>
+          <input id="wholesalePrice" type="number" formControlName="wholesalePrice" class="form-control" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">Stock Quantity:</label>
+        <input id="quantity" type="number" formControlName="quantity" class="form-control" />
+      </div>
+
+      <button type="submit" class="btn btn-success">Update Product</button>
+
+      <!-- Success/Error Message -->
+      <div *ngIf="message" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}" class="message-box">
+        {{ message }}
+      </div>
+    </form>
+
+    <!-- Regular User Read-Only View -->
+    <div *ngIf="!isAdmin" class="product-info">
+      <p><strong>Description:</strong> {{ product.description }}</p>
+      <p><strong>Price:</strong> ${{ product.retailPrice }}</p>
+      <p *ngIf="product.quantity !== undefined"><strong>Quantity:</strong> {{ product.quantity }}</p>
+      <p *ngIf="product.wholesalePrice !== undefined"><strong>Wholesale Price:</strong> ${{ product.wholesalePrice }}</p>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="!product" class="alert alert-danger">
+      Product not found.
+    </div>
+  </div>
+</div>
